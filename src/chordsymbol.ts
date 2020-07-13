@@ -244,6 +244,13 @@ export class ChordSymbol extends Modifier {
     return true;
   }
 
+  symbolBlocks;
+  horizontal;
+  vertical;
+  useKerning: boolean;
+  font;
+  text;
+
   // ## Prototype Methods
   //
   // chordSymbol is a modifier that creates a chord symbol above/below a chord
@@ -330,7 +337,7 @@ export class ChordSymbol extends Modifier {
   // ### getSymbolBlock
   // ChordSymbol allows multiple blocks so we can mix glyphs and font text.
   // Each block can have its own vertical orientation
-  getSymbolBlock(parameters) {
+  getSymbolBlock(parameters): { text, symbolType, symbolModifier, xShift, yShift, width, glyph: Glyph } {
     parameters = parameters == null ? {} : parameters;
     const symbolType = (parameters.symbolType ? parameters.symbolType : ChordSymbol.symbolTypes.TEXT);
     const text = parameters.text ? parameters.text : '';
@@ -338,11 +345,11 @@ export class ChordSymbol extends Modifier {
     const xShift = 0;
     const yShift = 0;
 
-    const rv = {
-      text, symbolType, symbolModifier, xShift, yShift
+    const rv: { text, symbolType, symbolModifier, xShift, yShift, width, glyph: Glyph } = {
+      text, symbolType, symbolModifier, xShift, yShift,
+      width: 0, glyph: undefined
     };
 
-    rv.width = 0;
     if (symbolType === ChordSymbol.symbolTypes.GLYPH && typeof(parameters.glyph) === 'string') {
       const glyphArgs = ChordSymbol.glyphs[parameters.glyph];
       let glyphPoints = 20;

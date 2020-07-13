@@ -15,6 +15,12 @@ export class Volta extends StaveModifier {
     };
   }
 
+  volta;
+  x;
+  y_shift;
+  number;
+  font;
+
   constructor(type, number, x, y_shift) {
     super();
     this.setAttribute('type', 'Volta');

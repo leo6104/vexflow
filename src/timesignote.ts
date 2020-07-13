@@ -5,6 +5,9 @@ import { Note } from './note';
 import { TimeSignature } from './timesignature';
 
 export class TimeSigNote extends Note {
+  timeSig;
+  stave;
+
   constructor(timeSpec, customPadding) {
     super({ duration: 'b' });
     this.setAttribute('type', 'TimeSigNote');

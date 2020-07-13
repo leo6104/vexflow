@@ -15,6 +15,12 @@ export class TabTie extends StaveTie {
     return new TabTie(notes, 'P');
   }
 
+  render_options;
+  first_note;
+  last_note;
+  first_indices;
+  last_indices;
+
   constructor(notes, text) {
     /**
      * Notes is a struct that has:

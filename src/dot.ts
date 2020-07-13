@@ -95,6 +95,16 @@ export class Dot extends Modifier {
     return true;
   }
 
+  note;
+  index;
+  position;
+  radius;
+  dot_shiftY: number;
+  x_shift: number;
+  y_shift: number;
+  width: number;
+
+
   /**
    * @constructor
    */
@@ -120,9 +130,10 @@ export class Dot extends Modifier {
       this.radius *= 0.50;
       this.setWidth(3);
     }
+    return this;
   }
 
-  setDotShiftY(y) { this.dot_shiftY = y; return this; }
+  setDotShiftY(y: number) { this.dot_shiftY = y; return this; }
 
   draw() {
     this.checkContext();

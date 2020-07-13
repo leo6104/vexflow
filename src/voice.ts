@@ -25,6 +25,20 @@ export class Voice extends Element {
     };
   }
 
+  options;
+  time;
+  totalTicks: Fraction;
+  resolutionMultiplier;
+  tickables: any[];
+  ticksUsed: Fraction;
+  smallestTickCount: Fraction;
+  largestTickWidth: number;
+  stave;
+  mode;
+  voiceGroup;
+  expTicksUsed;
+  preFormatted: boolean;
+
   constructor(time, options) {
     super();
     this.setAttribute('type', 'Voice');

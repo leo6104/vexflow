@@ -73,6 +73,13 @@ export class Bend extends Modifier {
     return true;
   }
 
+  text;
+  x_shift;
+  release;
+  font;
+  render_options;
+  phrase;
+
   // ## Prototype Methods
   constructor(text, release, phrase) {
     super();

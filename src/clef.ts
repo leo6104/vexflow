@@ -15,6 +15,8 @@ import { Glyph } from './glyph';
 function L(...args) { if (Clef.DEBUG) Vex.L('Vex.Flow.Clef', args); }
 
 export class Clef extends StaveModifier {
+  static DEBUG = false;
+
   static get CATEGORY() { return 'clefs'; }
 
   // Every clef name is associated with a glyph code from the font file
@@ -70,6 +72,16 @@ export class Clef extends StaveModifier {
       },
     };
   }
+
+  type;
+  clef;
+  size;
+  glyph: Glyph;
+  annotation;
+  attachment;
+  stave;
+  width: number;
+  x;
 
   // Create a new clef. The parameter `clef` must be a key from
   // `Clef.types`.

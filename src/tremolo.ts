@@ -12,6 +12,15 @@ import { Stem } from './stem';
 export class Tremolo extends Modifier {
   static get CATEGORY() { return 'tremolo'; }
 
+  num;
+  note;
+  index;
+  position;
+  code;
+  font;
+  render_options;
+  y_spacing;
+
   constructor(num) {
     super();
     this.setAttribute('type', 'Tremolo');

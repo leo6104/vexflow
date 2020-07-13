@@ -10,22 +10,62 @@ export class BoundingBox {
     return new BoundingBox(that.x, that.y, that.w, that.h);
   }
 
-  constructor(x, y, w, h) {
+  constructor(
+    private x,
+    private y,
+    private w,
+    private h
+  ) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
   }
-  getX() { return this.x; }
-  getY() { return this.y; }
-  getW() { return this.w; }
-  getH() { return this.h; }
-  setX(x) { this.x = x; return this; }
-  setY(y) { this.y = y; return this; }
-  setW(w) { this.w = w; return this; }
-  setH(h) { this.h = h; return this; }
-  move(x, y) { this.x += x; this.y += y; }
-  clone() { return BoundingBox.copy(this); }
+
+  getX() {
+    return this.x;
+  }
+
+  getY() {
+    return this.y;
+  }
+
+  getW() {
+    return this.w;
+  }
+
+  getH() {
+    return this.h;
+  }
+
+  setX(x) {
+    this.x = x;
+    return this;
+  }
+
+  setY(y) {
+    this.y = y;
+    return this;
+  }
+
+  setW(w) {
+    this.w = w;
+    return this;
+  }
+
+  setH(h) {
+    this.h = h;
+    return this;
+  }
+
+  move(x, y) {
+    this.x += x;
+    this.y += y;
+  }
+
+  clone() {
+    return BoundingBox.copy(this);
+  }
 
   // Merge my box with given box. Creates a bigger bounding box unless
   // the given box is contained in this one.
@@ -46,9 +86,7 @@ export class BoundingBox {
     return this;
   }
 
-  draw(ctx, x, y) {
-    if (!x) x = 0;
-    if (!y) y = 0;
+  draw(ctx, x = 0, y = 0) {
     ctx.rect(this.x + x, this.y + y, this.w, this.h);
     ctx.stroke();
   }

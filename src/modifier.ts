@@ -41,6 +41,16 @@ export class Modifier extends Element {
     };
   }
 
+  width;
+  note;
+  index;
+  text_line;
+  position;
+  modifier_context;
+  x_shift: number;
+  y_shift: number;
+  spacingFromNextModifier: number;
+
   constructor() {
     super();
     this.setAttribute('type', 'Modifier');

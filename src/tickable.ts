@@ -9,7 +9,25 @@ import { Element } from './element';
 import { Flow } from './tables';
 import { Fraction } from './fraction';
 
-export class Tickable extends Element {
+export abstract class Tickable extends Element {
+  ticks: Fraction;
+  intrinsicTicks: number;
+  tickMultiplier: Fraction;
+  width: number;
+  x_shift: number;
+  voice;
+  tickContext;
+  modifierContext;
+  modifiers: any[];
+  preFormatted: boolean;
+  postFormatted: boolean;
+  tuplet;
+  tupletStack;
+  align_center: boolean;
+  center_x_shift: number;
+  ignore_ticks: boolean;
+  formatterMetrics;
+
   constructor() {
     super();
     this.setAttribute('type', 'Tickable');

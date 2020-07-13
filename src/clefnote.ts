@@ -12,6 +12,12 @@ import { Glyph } from './glyph';
 export class ClefNote extends Note {
   static get CATEGORY() { return 'clefnote'; }
 
+  type;
+  clef_obj;
+  clef;
+  glyph: Glyph;
+  stave;
+
   constructor(type, size, annotation) {
     super({ duration: 'b' });
     this.setAttribute('type', 'ClefNote');

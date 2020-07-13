@@ -31,6 +31,15 @@ export class TextBracket extends Element {
     };
   }
 
+  start;
+  stop;
+  text;
+  superscript;
+  position;
+  line;
+  font;
+  render_options;
+
   constructor({
     start,
     stop,

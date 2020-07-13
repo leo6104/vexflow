@@ -23,6 +23,11 @@ export class Repetition extends StaveModifier {
     };
   }
 
+  symbol_type;
+  x_shift;
+  y_shift;
+  font;
+
   constructor(type, x, y_shift) {
     super();
     this.setAttribute('type', 'Repetition');

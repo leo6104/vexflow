@@ -5,7 +5,7 @@
 
 import { Element } from './element';
 
-export class StaveModifier extends Element {
+export abstract class StaveModifier extends Element {
   static get Position() {
     return {
       LEFT: 1,
@@ -16,6 +16,13 @@ export class StaveModifier extends Element {
       END: 6,
     };
   }
+
+  padding: number;
+  position;
+  layoutMetrics;
+  stave;
+  width;
+  x;
 
   constructor() {
     super();

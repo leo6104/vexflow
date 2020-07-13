@@ -7,7 +7,7 @@ import { Fraction } from './fraction';
 import { Glyph } from './glyph';
 import { DefaultFontStack } from './smufl';
 
-const Flow = {
+const Flow: any = {
   STEM_WIDTH: 1.5,
   STEM_HEIGHT: 35,
   STAVE_LINE_THICKNESS: 1,

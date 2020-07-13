@@ -12,8 +12,14 @@ function processOutline(outline, originX, originY, scaleX, scaleY, outlineFns) {
   let y;
   let i = 0;
 
-  function nextX() { return originX + outline[i++] * scaleX; }
-  function nextY() { return originY + outline[i++] * scaleY; }
+  function nextX() {
+    return originX + outline[i++] * scaleX;
+  }
+
+  function nextY() {
+    return originY + outline[i++] * scaleY;
+  }
+
   function doOutline(command, ...args) {
     outlineFns[command](...args);
   }
@@ -160,7 +166,7 @@ export class Glyph extends Element {
     return metrics;
   }
 
-  static renderOutline(ctx, outline, scale, x_pos, y_pos, options) {
+  static renderOutline(ctx, outline, scale, x_pos, y_pos, options?) {
     ctx.beginPath();
     ctx.moveTo(x_pos, y_pos);
     processOutline(outline, x_pos, y_pos, scale, -scale, {
@@ -169,7 +175,7 @@ export class Glyph extends Element {
       q: ctx.quadraticCurveTo.bind(ctx),
       b: ctx.bezierCurveTo.bind(ctx),
       // z: ctx.fill.bind(ctx), // ignored
-    }, options);
+    });
     ctx.fill();
   }
 
@@ -192,10 +198,21 @@ export class Glyph extends Element {
     );
   }
 
+  code;
+  point;
+  options;
+  metrics;
+  x_shift;
+  y_shift;
+  originShift;
+  scale;
+  stave;
+  bbox: BoundingBox;
+
   /**
    * @constructor
    */
-  constructor(code, point, options) {
+  constructor(code, point, options?) {
     super();
     this.setAttribute('type', 'Glyph');
 
@@ -231,10 +248,25 @@ export class Glyph extends Element {
     this.reset();
   }
 
-  setPoint(point) { this.point = point; return this; }
-  setStave(stave) { this.stave = stave; return this; }
-  setXShift(x_shift) { this.x_shift = x_shift; return this; }
-  setYShift(y_shift) { this.y_shift = y_shift; return this; }
+  setPoint(point) {
+    this.point = point;
+    return this;
+  }
+
+  setStave(stave) {
+    this.stave = stave;
+    return this;
+  }
+
+  setXShift(x_shift) {
+    this.x_shift = x_shift;
+    return this;
+  }
+
+  setYShift(y_shift) {
+    this.y_shift = y_shift;
+    return this;
+  }
 
   reset() {
     this.metrics = Glyph.loadMetrics(this.options.fontStack, this.code, this.options.category);

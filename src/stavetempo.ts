@@ -9,6 +9,14 @@ import { Glyph } from './glyph';
 export class StaveTempo extends StaveModifier {
   static get CATEGORY() { return 'stavetempo'; }
 
+  tempo;
+  position;
+  x;
+  shift_x: number;
+  shift_y: number;
+  font;
+  render_options;
+
   constructor(tempo, x, shift_y) {
     super();
     this.setAttribute('type', 'StaveTempo');

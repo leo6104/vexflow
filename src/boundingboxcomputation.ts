@@ -10,7 +10,12 @@
 // nvg.js#L449
 
 export class BoundingBoxComputation {
-  constructor(x1, y1, x2, y2) { // pass in initial points if you want
+  x1;
+  y1;
+  x2;
+  y2;
+
+  constructor(x1?, y1?, x2?, y2?) { // pass in initial points if you want
     this.x1 = Number.NaN;
     this.y1 = Number.NaN;
     this.x2 = Number.NaN;

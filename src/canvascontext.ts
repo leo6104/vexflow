@@ -36,6 +36,10 @@ export class CanvasContext {
     return [width, height];
   }
 
+  vexFlowCanvasContext;
+  canvas;
+  background_fillStyle;
+
   constructor(context) {
     // Use a name that is unlikely to clash with a canvas context
     // property
@@ -120,7 +124,7 @@ export class CanvasContext {
   }
 
   resize(width, height) {
-    [width, height] = this.SanitizeCanvasDims(parseInt(width, 10), parseInt(height, 10));
+    [width, height] = CanvasContext.SanitizeCanvasDims(parseInt(width, 10), parseInt(height, 10));
     return this.vexFlowCanvasContext.resize(width, height);
   }
 

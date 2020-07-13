@@ -18657,7 +18657,7 @@ function (_Element) {
   }, {
     key: "drawVerticalBar",
     value: function drawVerticalBar(x) {
-      this.drawVerticalBarFixed(this.x + x, false);
+      this.drawVerticalBarFixed(this.x + x);
     }
   }, {
     key: "drawVerticalBarFixed",

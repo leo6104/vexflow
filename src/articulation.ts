@@ -216,12 +216,17 @@ export class Articulation extends Modifier {
       .split(',')
       .map(articString => articString.trim().split('.'))
       .map(([name, position]) => {
-        const artic = { type: articNameToCode[name] };
+        const artic = { type: articNameToCode[name], position: undefined };
         if (position) artic.position = Modifier.PositionString[position];
         return builder.getFactory().Articulation(artic);
       })
       .map(artic => note.addModifier(0, artic));
   }
+
+  articulation;
+  type;
+  render_options;
+  glyph: Glyph;
 
   // Create a new articulation of type `type`, which is an entry in
   // `Vex.Flow.articulationCodes` in `tables.js`.

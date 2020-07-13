@@ -10,8 +10,19 @@ import { Vex } from './vex';
 import { Registry } from './registry';
 import { Flow } from './tables';
 
-export class Element {
+export abstract class Element {
+  static ID = 1000;
   static newID() { return 'auto' + (Element.ID++); }
+
+  // TODO: Define types
+  attrs;
+  boundingBox;
+  context;
+  rendered;
+  fontStack;
+  musicFont;
+  style;
+  registry;
 
   constructor({ type } = {}) {
     this.attrs = {
@@ -64,6 +75,10 @@ export class Element {
     if (!style) return this;
     context.restore();
     return this;
+  }
+
+  draw() {
+    // Implemented by child class
   }
 
   // draw with style of an element.
@@ -132,5 +147,3 @@ export class Element {
     return this.context;
   }
 }
-
-Element.ID = 1000;

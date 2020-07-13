@@ -8,6 +8,16 @@ import { Vex } from './vex';
 import { Element } from './element';
 
 export class StaveTie extends Element {
+  notes;
+  text;
+  direction;
+  render_options;
+  first_note;
+  last_note;
+  first_indices;
+  last_indices;
+  font;
+
   constructor(notes, text) {
     /**
      * Notes is a struct that has:
@@ -42,8 +52,15 @@ export class StaveTie extends Element {
     this.setNotes(notes);
   }
 
-  setFont(font) { this.font = font; return this; }
-  setDirection(direction) { this.direction = direction; return this; }
+  setFont(font) {
+    this.font = font;
+    return this;
+  }
+
+  setDirection(direction) {
+    this.direction = direction;
+    return this;
+  }
 
   /**
    * Set the notes to attach this tie to.
@@ -89,7 +106,8 @@ export class StaveTie extends Element {
     let cp2 = this.render_options.cp2;
 
     if (Math.abs(params.last_x_px - params.first_x_px) < 10) {
-      cp1 = 2; cp2 = 8;
+      cp1 = 2;
+      cp2 = 8;
     }
 
     const first_x_shift = this.render_options.first_x_shift;
@@ -98,7 +116,7 @@ export class StaveTie extends Element {
 
     for (let i = 0; i < this.first_indices.length; ++i) {
       const cp_x = ((params.last_x_px + last_x_shift) +
-          (params.first_x_px + first_x_shift)) / 2;
+        (params.first_x_px + first_x_shift)) / 2;
       const first_y_px = params.first_ys[this.first_indices[i]] + y_shift;
       const last_y_px = params.last_ys[this.last_indices[i]] + y_shift;
 

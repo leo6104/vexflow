@@ -12,9 +12,13 @@ import { Note } from './note';
 import { Glyph } from './glyph';
 
 // To enable logging for this class. Set `Vex.Flow.TextDynamics.DEBUG` to `true`.
-function L(...args) { if (TextDynamics.DEBUG) Vex.L('Vex.Flow.TextDynamics', args); }
+function L(...args) {
+  if (TextDynamics.DEBUG) Vex.L('Vex.Flow.TextDynamics', args);
+}
 
 export class TextDynamics extends Note {
+  static DEBUG = false;
+
   // The glyph data for each dynamics letter
   static get GLYPHS() {
     return {
@@ -44,6 +48,13 @@ export class TextDynamics extends Note {
       },
     };
   }
+
+  sequence;
+  line;
+  glyphs;
+  render_options;
+  preFormatted;
+  stave;
 
   // A `TextDynamics` object inherits from `Note` so that it can be formatted
   // within a `Voice`.
@@ -80,7 +91,7 @@ export class TextDynamics extends Note {
       const glyph_data = TextDynamics.GLYPHS[letter];
       if (!glyph_data) throw new Vex.RERR('Invalid dynamics character: ' + letter);
 
-      const size =  this.render_options.glyph_font_size;
+      const size = this.render_options.glyph_font_size;
       const glyph = new Glyph(glyph_data.code, size, { category: 'textNote' });
 
       // Add the glyph

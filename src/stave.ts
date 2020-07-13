@@ -16,6 +16,21 @@ import { TimeSignature } from './timesignature';
 import { Volta } from './stavevolta';
 
 export class Stave extends Element {
+  x;
+  y;
+  width;
+  height;
+  formatted: boolean;
+  start_x: number;
+  end_x: number;
+  modifiers: any[];
+  measure: number;
+  clef: string;
+  endClef;
+  font;
+  options;
+  bounds;
+
   constructor(x, y, width, options) {
     super();
     this.setAttribute('type', 'Stave');
@@ -286,7 +301,7 @@ export class Stave extends Element {
 
   // This method adds a stave modifier to the stave. Note that the first two
   // modifiers (BarLines) are automatically added upon construction.
-  addModifier(modifier, position) {
+  addModifier(modifier, position?) {
     if (position !== undefined) {
       modifier.setPosition(position);
     }
@@ -397,7 +412,7 @@ export class Stave extends Element {
     return this;
   }
 
-  addClef(clef, size, annotation, position) {
+  addClef(clef, size?, annotation?, position?) {
     if (position === undefined || position === StaveModifier.Position.BEGIN) {
       this.clef = clef;
     } else if (position === StaveModifier.Position.END) {
@@ -429,7 +444,7 @@ export class Stave extends Element {
     return this;
   }
 
-  getModifiers(position, category) {
+  getModifiers(position, category?) {
     if (position === undefined && category === undefined) return this.modifiers;
 
     return this.modifiers.filter(modifier =>
@@ -616,7 +631,7 @@ export class Stave extends Element {
   }
 
   drawVerticalBar(x) {
-    this.drawVerticalBarFixed(this.x + x, false);
+    this.drawVerticalBarFixed(this.x + x);
   }
 
   drawVerticalBarFixed(x) {

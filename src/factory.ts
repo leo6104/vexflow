@@ -62,6 +62,10 @@ function setDefaults(params = {}, defaults) {
 }
 
 export class Factory {
+  static DEBUG = false;
+
+  context;
+
   constructor(options) {
     L('New factory: ', options);
     const defaults = {

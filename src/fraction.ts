@@ -9,6 +9,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { Vex } from './vex';
+
 export class Fraction {
   /**
    * GCD: Find greatest common divisor using Euclidean algorithm
@@ -53,17 +54,28 @@ export class Fraction {
     }
   }
 
-  constructor(numerator, denominator) {
+  // Temporary cached objects
+  static __compareA = new Fraction();
+  static __compareB = new Fraction();
+  static __tmp = new Fraction();
+
+  constructor(
+    public numerator?,
+    public denominator?
+  ) {
     this.set(numerator, denominator);
   }
+
   set(numerator, denominator) {
     this.numerator = numerator === undefined ? 1 : numerator;
     this.denominator = denominator === undefined ? 1 : denominator;
     return this;
   }
+
   value() {
     return this.numerator / this.denominator;
   }
+
   simplify() {
     let u = this.numerator;
     let d = this.denominator;
@@ -78,7 +90,8 @@ export class Fraction {
     }
     return this.set(u, d);
   }
-  add(param1, param2) {
+
+  add(param1: Fraction | any, param2?) {
     let otherNumerator;
     let otherDenominator;
 
@@ -106,7 +119,8 @@ export class Fraction {
     const u = this.numerator * a + otherNumerator * b;
     return this.set(u, lcm);
   }
-  subtract(param1, param2) {
+
+  subtract(param1, param2?) {
     let otherNumerator;
     let otherDenominator;
 
@@ -134,7 +148,8 @@ export class Fraction {
     const u = this.numerator * a - otherNumerator * b;
     return this.set(u, lcm);
   }
-  multiply(param1, param2) {
+
+  multiply(param1: Fraction | number, param2?) {
     let otherNumerator;
     let otherDenominator;
 
@@ -157,6 +172,7 @@ export class Fraction {
 
     return this.set(this.numerator * otherNumerator, this.denominator * otherDenominator);
   }
+
   divide(param1, param2) {
     let otherNumerator;
     let otherDenominator;
@@ -291,8 +307,3 @@ export class Fraction {
     return this.set(n, d);
   }
 }
-
-// Temporary cached objects
-Fraction.__compareA = new Fraction();
-Fraction.__compareB = new Fraction();
-Fraction.__tmp = new Fraction();

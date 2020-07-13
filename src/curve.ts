@@ -21,6 +21,11 @@ export class Curve extends Element {
     };
   }
 
+  render_options;
+  from;
+  to;
+  context;
+
   // from: Start note
   // to: End note
   // options:

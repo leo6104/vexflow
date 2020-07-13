@@ -78,7 +78,7 @@ export class KeySignature extends StaveModifier {
   }
 
   // Create a new Key Signature based on a `key_spec`
-  constructor(keySpec, cancelKeySpec, alterKeySpec) {
+  constructor(keySpec, cancelKeySpec, alterKeySpec?) {
     super();
     this.setAttribute('type', 'KeySignature');
 
